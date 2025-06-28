@@ -11,6 +11,8 @@
     <span class="text">Kategori</span>
 </a>
                   <div class="card-body">
+                    @yield('content')
+                    @include('template.feedback')
                     <table class="table table-bordered">
                       <thead>
                         <tr>
@@ -28,7 +30,7 @@
                           <td>{{ $pace -> tipe }}</td>
                           <td>
                             <form action="{{ url('/'.$pace->id.'/delete') }}" method="POST" style="display:inline">
-                              <a href="{{ url('/'.$pace->id.'/edit') }}" class="btn btn-sm btn-warning">Edit</a>
+                              <a href="{{ url('/kategori'.$pace->id.'/edit') }}" class="btn btn-sm btn-warning">Edit</a>
                               @csrf
                               @method('DELETE')
                               <button type="submit" class="btn btn-sm btn-danger btn-delete">Hapus</button>
