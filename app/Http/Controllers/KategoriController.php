@@ -58,7 +58,12 @@ class KategoriController extends Controller
      */
     public function edit(string $id)
     {
-        $kategori = null;
+        $kategori = Kategori::findOrFail($id);
+
+        if(!$kategori){
+            return("data dengan id {$id} tidak ditemukan");
+        }
+
         return view('kategori.form',compact('kategori'));     
     }
 
@@ -71,12 +76,16 @@ class KategoriController extends Controller
 
         $request->validate([
             'nama_kategori'=>'required|string|max:255',
-            'tipe'=>'required|boolean'
+            'tipe'=>'required|string'
         ]);
 
         $data= $request->all();
 
         $kategori->update($data);
+
+        $asoy = $kategori->update();
+        if($asoy) return redirect('/')->with('success','databerhasil ditambahkan');
+        else return redirect('/')->with('error','data gagal ditambahkan');
     }
 
     /**
@@ -86,5 +95,10 @@ class KategoriController extends Controller
     {
         $kategori = Kategori::findOrFail($id);
         $kategori->delete();
+
+        $pumaki = $kategori;
+
+        if($pumaki)return redirect('/')->with('success','data berhasil dihapus');
+        else return redirect('/')->with('error','data gagal dihapus');
     }
 }

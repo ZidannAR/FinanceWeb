@@ -29,11 +29,13 @@
                           <td>{{ $pace -> nama_kategori }}</td>
                           <td>{{ $pace -> tipe }}</td>
                           <td>
-                            <form action="{{ url('/'.$pace->id.'/delete') }}" method="POST" style="display:inline">
-                              <a href="{{ url('/kategori'.$pace->id.'/edit') }}" class="btn btn-sm btn-warning">Edit</a>
+                            <form action="{{ url('/kategori/'.$pace->id_kategori.'/delete') }}" method="POST" style="display:inline">
+                              
+                              <br>
+                              <a href="{{ url('/kategori/'.$pace->id_kategori.'/edit') }}" class="btn btn-sm btn-warning">Edit</a>
                               @csrf
                               @method('DELETE')
-                              <button type="submit" class="btn btn-sm btn-danger btn-delete">Hapus</button>
+                              <button type="submit" class="btn btn-sm btn-danger btn- delete">Hapus</button>
                             </form>
                           </td>
                          

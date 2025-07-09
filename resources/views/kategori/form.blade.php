@@ -3,8 +3,11 @@
 @section('content')
 <div class="card">
   <h1 class="h3 mb-2 text-gray-800">{{ isset($kategori) ? 'Edit' : 'Tambah' }} Kategori</h1>
-  <form method="post" action="{{ isset($kategori) ? url('/kategori/edit', $kategori) : url('/kategori/add') }}">
+  <form method="post" action="{{ isset($kategori) ? url('/kategori/'.$kategori->id_kategori) : url('/kategori/add') }}">
     @csrf
+    @if (isset($kategori))
+    @method('put')
+    @endif
     <div class="card-body">
 
    
@@ -27,6 +30,7 @@
      
     <div class="card-footer text-end">
       <a href="{{ url('/') }}" class="btn btn-secondary">Batal</a>
+      
       <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 
